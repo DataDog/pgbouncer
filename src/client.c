@@ -65,7 +65,7 @@ static bool check_client_passwd(PgSocket *client, const char *passwd)
 		if (get_password_type(user->passwd) == PASSWORD_TYPE_PLAINTEXT)
 			if (!pg_md5_encrypt(user->passwd, user->name, strlen(user->name), md5))
 				return false;
-		if (!pg_md5_encrypt(stored_passwd + 3, (char *)client->tmp_login_salt, 4, md5))
+		if (!pg_md5_encrypt(user->passwd + 3, (char *)client->tmp_login_salt, 4, md5))
 			return false;
 		return strcmp(md5, passwd) == 0;
 	}
