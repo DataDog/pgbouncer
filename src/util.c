@@ -93,7 +93,7 @@ static void hash2hex(const uint8_t *hash, char *dst)
 	bin2hex(hash, MD5_DIGEST_LENGTH, dst, 16*2+1);
 }
 
-void pg_md5_encrypt(const char *part1,
+bool pg_md5_encrypt(const char *part1,
 		    const char *part2, size_t part2len,
 		    char *dest)
 {
